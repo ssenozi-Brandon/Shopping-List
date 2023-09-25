@@ -1,6 +1,8 @@
 const itemForm = document.getElementById('item-form');
 const itemInput = document.getElementById('item-input');
 const itemList = document.getElementById('item-list');
+const clearButton = document.getElementById('clear')
+
 
 function addItem(e){
   e.preventDefault();
@@ -11,7 +13,8 @@ function addItem(e){
     alert('please add an item')
     return;
   }
-  // creating new list item
+  // creating new list item method 1
+
 const li = document.createElement('li')
 li.textContent = `${newItem}`
 
@@ -27,5 +30,19 @@ itemList.appendChild(li)
 itemInput.value = '';
 }
 
+// removing an item
+function removeItem(e){
+  if(e.target.parentElement.classList.contains('remove-item')){
+    e.target.parentElement.parentElement.remove();
+  }
+}
+
+// clearing items
+function clearItems(){
+ itemList.innerHTML = '';
+}
+
 // event listeners
 itemForm.addEventListener('submit',addItem);
+itemList.addEventListener('click',removeItem);
+clearButton.addEventListener('click',clearItems)
